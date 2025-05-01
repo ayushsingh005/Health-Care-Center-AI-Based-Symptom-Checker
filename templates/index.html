@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Health Care Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body {
+        background-color: #f0f4f8;
+        font-family: 'Segoe UI', sans-serif;
+      }
+      h1 {
+        color: #0d6efd;
+        margin-top: 30px;
+      }
+      .form-section {
+        background-color: white;
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      }
+      .toggle-button {
+        border: none;
+        color: white;
+        font-weight: 500;
+      }
+      .result-container {
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #f9fbfc;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      }
+    </style>
+</head>
+<body>
+<!--this is Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Health Care Center</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/developer">Developer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/blog">Blog</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search" method="get" action="/">
+        <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<h1 class="text-center">Health Care Center</h1>
+
+<div class="container mt-4 mb-4">
+  <div class="form-section">
+    <form action="/predict" method="post">
+      <div class="form-group">
+        <label for="symptoms" class="form-label">Enter Symptoms</label>
+        <input type="text" class="form-control" name="symptoms" placeholder="e.g. itching, vomiting">
+      </div>
+      <br>
+      <button class="btn btn-primary w-100 py-2">Get Recommendations</button>
+    </form>
+  </div>
+</div>
+
+<!-- Results & Modals Render Here -->
+{% if predicted_disease %}
+<h2 class="text-center mt-5">AI Doctor's Recommendations</h2>
+<div class="container">
+  <div class="result-container">
+    <button class="btn btn-warning toggle-button" data-bs-toggle="modal" data-bs-target="#diseaseModal">Disease</button>
+    <button class="btn btn-info toggle-button" data-bs-toggle="modal" data-bs-target="#descriptionModal">Description</button>
+    <button class="btn btn-danger toggle-button" data-bs-toggle="modal" data-bs-target="#precautionModal">Precaution</button>
+    <button class="btn btn-secondary toggle-button" data-bs-toggle="modal" data-bs-target="#medicationsModal">Medications</button>
+    <button class="btn btn-success toggle-button" data-bs-toggle="modal" data-bs-target="#workoutsModal">Workouts</button>
+    <button class="btn btn-dark toggle-button" data-bs-toggle="modal" data-bs-target="#dietsModal">Diets</button>
+  </div>
+</div>
+{% endif %}
+
+{% if error_message %}
+<div class="container mt-3">
+  <div class="alert alert-danger">
+    <strong>{{ error_message }}</strong><br>
+    <small>{{ valid_symptoms }}</small>
+  </div>
+</div>
+{% endif %}
+
+<!-- Include Bootstrap Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
