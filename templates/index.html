@@ -1,67 +1,78 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Health Care Center</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-      body {
-        background-color: #f0f4f8;
-        font-family: 'Segoe UI', sans-serif;
-      }
-      h1 {
-        color: #0d6efd;
-        margin-top: 30px;
-      }
-      .form-section {
-        background-color: white;
-        border-radius: 12px;
-        padding: 40px;
-        box-shadow: 0 0 12px rgba(0,0,0,0.1);
-      }
-      .toggle-button {
-        border: none;
-        color: white;
-        font-weight: 500;
-      }
-      .result-container {
-        margin-top: 20px;
-        padding: 20px;
-        border-radius: 8px;
-        background-color: #f9fbfc;
-        box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Health Care Center</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    h1 {
+      color: #0d6efd;
+      margin-top: 30px;
+      font-weight: 700;
+    }
+    .form-section {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+    }
+    .toggle-button {
+      border: none;
+      color: white;
+      font-weight: 500;
+      transition: transform 0.2s;
+    }
+    .toggle-button:hover {
+      transform: scale(1.05);
+    }
+    .result-container {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      background-color: #ffffff;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    }
+    .navbar {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .btn-primary {
+      background-color: #28a745;
+      border-color: #28a745;
+    }
+    .btn-primary:hover {
+      background-color: #218838;
+    }
+    label {
+      font-weight: 500;
+    }
+  </style>
 </head>
 <body>
-<!--this is Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Health Care Center</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand text-success fw-bold" href="#">Health Center</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/contact">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/developer">Developer</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/blog">Blog</a>
-        </li>
+        <li class="nav-item"><a class="nav-link active text-success" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="/developer">Developer</a></li>
+        <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
       </ul>
       <form class="d-flex" role="search" method="get" action="/">
-        <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light" type="submit">Search</button>
+        <input class="form-control me-2" type="search" name="query" placeholder="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
   </div>
@@ -69,44 +80,130 @@
 
 <h1 class="text-center">Health Care Center</h1>
 
-<div class="container mt-4 mb-4">
-  <div class="form-section">
-    <form action="/predict" method="post">
-      <div class="form-group">
-        <label for="symptoms" class="form-label">Enter Symptoms</label>
-        <input type="text" class="form-control" name="symptoms" placeholder="e.g. itching, vomiting">
-      </div>
-      <br>
-      <button class="btn btn-primary w-100 py-2">Get Recommendations</button>
-    </form>
-  </div>
+<!-- Symptom Form -->
+<div class="container form-section">
+  <form action="/predict" method="post">
+    <div class="form-group">
+      <label for="symptoms">Enter Symptoms</label>
+      <input type="text" class="form-control" name="symptoms" placeholder="e.g., itching, vomiting">
+    </div>
+    <br>
+    <button class="btn btn-primary w-100">Get Recommendations</button>
+  </form>
 </div>
 
-<!-- Results & Modals Render Here -->
+<!-- Results -->
 {% if predicted_disease %}
-<h2 class="text-center mt-5">AI Doctor's Recommendations</h2>
-<div class="container">
-  <div class="result-container">
-    <button class="btn btn-warning toggle-button" data-bs-toggle="modal" data-bs-target="#diseaseModal">Disease</button>
-    <button class="btn btn-info toggle-button" data-bs-toggle="modal" data-bs-target="#descriptionModal">Description</button>
-    <button class="btn btn-danger toggle-button" data-bs-toggle="modal" data-bs-target="#precautionModal">Precaution</button>
-    <button class="btn btn-secondary toggle-button" data-bs-toggle="modal" data-bs-target="#medicationsModal">Medications</button>
-    <button class="btn btn-success toggle-button" data-bs-toggle="modal" data-bs-target="#workoutsModal">Workouts</button>
-    <button class="btn btn-dark toggle-button" data-bs-toggle="modal" data-bs-target="#dietsModal">Diets</button>
+  <h1 class="text-center my-4 mt-4">Our AI Doc Results</h1>
+  <div class="container">
+    <div class="result-container">
+      <button class="toggle-button btn btn-info m-2" data-bs-toggle="modal" data-bs-target="#diseaseModal">Disease</button>
+      <button class="toggle-button btn btn-secondary m-2" data-bs-toggle="modal" data-bs-target="#descriptionModal">Description</button>
+      <button class="toggle-button btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#precautionModal">Precaution</button>
+      <button class="toggle-button btn btn-warning m-2 text-dark" data-bs-toggle="modal" data-bs-target="#medicationsModal">Medications</button>
+      <button class="toggle-button btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#workoutsModal">Workouts</button>
+      <button class="toggle-button btn btn-light border m-2 text-dark" data-bs-toggle="modal" data-bs-target="#dietsModal">Diets</button>
+    </div>
   </div>
-</div>
 {% endif %}
 
+<!-- Error Handling -->
 {% if error_message %}
-<div class="container mt-3">
-  <div class="alert alert-danger">
-    <strong>{{ error_message }}</strong><br>
-    <small>{{ valid_symptoms }}</small>
+  <div class="container mt-4">
+    <div class="alert alert-danger">
+      <strong>{{ error_message }}</strong><br>
+      <small>{{ valid_symptoms }}</small>
+    </div>
   </div>
-</div>
 {% endif %}
 
-<!-- Include Bootstrap Bundle -->
+<!-- Modals -->
+<!-- Disease Modal -->
+<div class="modal fade" id="diseaseModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">Predicted Disease</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">{{ predicted_disease }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- Description Modal -->
+<div class="modal fade" id="descriptionModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Description</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">{{ dis_des }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- Precaution Modal -->
+<div class="modal fade" id="precautionModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">Precaution</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <ul>{% for i in dis_pre %}<li>{{ i }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Medications Modal -->
+<div class="modal fade" id="medicationsModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title">Medications</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <ul>{% for i in dis_med %}<li>{{ i }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Workouts Modal -->
+<div class="modal fade" id="workoutsModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Workouts</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <ul>{% for i in dis_work %}<li>{{ i }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Diets Modal -->
+<div class="modal fade" id="dietsModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-light text-dark">
+        <h5 class="modal-title">Diets</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <ul>{% for i in dis_diet %}<li>{{ i }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
